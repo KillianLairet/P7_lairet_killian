@@ -1,0 +1,17 @@
+{
+  "name": "p7_frontend",
+  "version": "1.0.0",
+  "description": "Social media for Groupomania, fictive society. I used SASS & JavaScript for the frontend part.",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./css/style.css"
+  },
+  "keywords": [
+    "SASS",
+    "JavaScript",
+    "Groupomania",
+    "Lairet"
+  ],
+  "author": "Killian Lairet",
+  "license": "ISC"
+}

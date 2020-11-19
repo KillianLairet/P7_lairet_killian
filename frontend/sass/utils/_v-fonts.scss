@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'quicksand';
+    src: url(../fonts/Quicksand/static/Quicksand-Regular.ttf);
+}
+@font-face {
+    font-family: 'raleway';
+    src: url(../fonts/Raleway/static/Raleway-ExtraLight.ttf);
+}
+
+$font-text: 'quicksand';
+$font-date: 'raleway';

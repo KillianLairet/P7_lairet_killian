@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupomania - Réseau social</title>
+
+    <meta name="author" content="Killian Lairet">
+    <meta name="description" content="Réseau social de Groupomania">
+
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+<div class="pg-ctn">
+    <header>
+        <h1>
+            <img src="./img/logo_1.png" alt="Logo de Groupomania">
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="wall.html">Accueil</a></li>
+                <li><a onclick="openProfilePage()">Mon profil</a></li>
+                <li><a onclick="logOut()">Se déconnecter</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="new-post"></div>
+        
+        <div id="posts"></div>
+    </main>
+
+    <section id="modify-post"></section>
+</div>
+
+<!-- JavaScript -->
+<script src="./js/wall.js"></script>
+<script>
+    function openProfilePage() {
+        let userId = sessionStorage.getItem('userId');
+        document.location.href = 'profile.html?userId=' + userId;
+    }
+    function logOut() {
+        window.location = 'connection.html';
+        sessionStorage.clear();
+    }
+</script>
+
+</body>
+</html>

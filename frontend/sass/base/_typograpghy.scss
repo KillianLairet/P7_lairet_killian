@@ -1,0 +1,25 @@
+body{
+    font-family: $font-text;
+}
+
+//typography for header
+header a{
+    color: white;
+    font-family: $font-text;
+    text-transform: uppercase;
+}
+
+//typography for connection.html
+.conn-title{
+    font-size: 2em;
+    color: $color-primary;
+}
+.conn-main__bloc__title{
+    font-size: 1.5em;
+    color: $color-primary;
+}
+
+.conn-main__bloc__form__submit{
+    font-size: 1em;
+    color: white;
+}

@@ -1,0 +1,41 @@
+#new-post{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 10px rgba($color: black, $alpha: .2);
+    margin: 60px 0;
+    width: 70%;
+    form{
+        padding: 20px 50px 20px 20px;
+        width: 90%;
+        textarea{
+            width: 100%;
+            padding: 10px;
+            font-family: $font-text;
+            font-size: 1.3em;
+            border: none;
+            resize: none;
+        }
+    }
+    .inputs{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        margin: 10px 0;
+        .submit{
+            width: fit-content;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 20px;
+            background-color: $color-btnSignin;
+            opacity: 0.9;
+            color: white;
+            font-size: 1.3em;
+            &:hover{
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+    }
+}

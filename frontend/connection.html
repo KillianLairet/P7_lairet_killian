@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupomania - Page de connexion</title>
+
+    <meta name="author" content="Killian Lairet">
+    <meta name="description" content="Inscrivez-vous sur le réseau social de Groupomania">
+
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+<div class="pg-ctn">
+    <h1 class="conn-title">Groupomania</h1>
+    <main class="conn-main">
+        <div class="conn-main__bloc">
+            <h2 class="conn-main__bloc__title">S'inscrire</h2>
+            <form class="conn-main__bloc__form" id="signup-form" name="signup-form">
+                <input class="conn-main__bloc__form__entries" type="text" id="inp_signup_userName" name="inp_signup_userName" placeholder="Nom complet">
+                <input class="conn-main__bloc__form__entries" type="email" id="inp_signup_email" name="inp_signup_email" placeholder="E-mail">
+                <input class="conn-main__bloc__form__entries" type="password" id="inp_signup_password" name="inp_signup_password" placeholder="Mot de passe">
+                <input class="conn-main__bloc__form__submit" type="submit" value="S'inscrire">
+            </form>
+        </div>
+        <div class="conn-main__bloc">
+            <h2 class="conn-main__bloc__title">Se connecter</h2>
+            <form class="conn-main__bloc__form" id="signin-form">
+                <input class="conn-main__bloc__form__entries conn-main__bloc__form__entries--signin" type="email" id="inp_signin_email" name="inp_signin_email" placeholder="E-mail">
+                <input class="conn-main__bloc__form__entries conn-main__bloc__form__entries--signin" type="password" id="inp_signin_password" name="inp_signin_password" placeholder="Mot de passe">
+                <input class="conn-main__bloc__form__submit conn-main__bloc__form__submit--signin" type="submit" value="Se connecter">
+            </form>
+        </div>
+    </main>
+</div>
+
+<!-- JavaScript -->
+<script src="./js/connection.js"></script>
+
+</body>
+</html>
