@@ -20,7 +20,7 @@ function displayPosts(post) {
     `<div class="post">
         <div class="post__header">
             <a href="profile.html?userId=${post.userId}">${post.userName}</a>
-            <a onclick="deletePost(${post.id})">...</a>
+            <a onclick="deletePost(${post.id})"><img src="./img/trash.png" alt="Supprimer la publication" width="20px"></a>
         </div>
         <div class="post__content">
             <p>${post.postContent}</p>
