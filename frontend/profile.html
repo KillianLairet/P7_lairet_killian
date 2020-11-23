@@ -20,8 +20,8 @@
         <nav>
             <ul>
                 <li><a href="wall.html">Accueil</a></li>
-                <li><a onclick="openProfilePage()">Mon profil</a></li>
-                <li><a onclick="logOut()">Se déconnecter</a></li>
+                <li><a id="btn-profile">Mon profil</a></li>
+                <li><a id="btn-log-out">Se déconnecter</a></li>
             </ul>
         </nav>
     </header>
@@ -33,16 +33,7 @@
 
 <!-- JavaScript -->
 <script src="./js/profile.js"></script>
-<script>
-    function openProfilePage() {
-        let userId = sessionStorage.getItem('userId');
-        document.location.href = 'profile.html?userId=' + userId;
-    }
-    function logOut() {
-        window.location = 'connection.html';
-        sessionStorage.clear();
-    }
-</script>
+<script src="./js/global.js"></script>
 
 </body>
 </html>

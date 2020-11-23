@@ -1,49 +1,46 @@
-let signupForm = document.getElementById('signup-form');
-signupForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const data = {
-        userName: document.getElementById('inp_signup_userName').value,
-        email: document.getElementById('inp_signup_email').value,
-        password: document.getElementById('inp_signup_password').value
-    };
-    console.log(JSON.stringify(data));
+//Create new user
+document.getElementById('signup-form').addEventListener('submit', async(e) => {
+    e.preventDefault()
+    let data = JSON.stringify({
+        userName: this.inp_signup_userName.value,
+        email: this.inp_signup_email.value,
+        password: this.inp_signup_password.value
+    })
+    const response = await fetch('http://localhost:3000/user/signup/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: data
+    })
+    if(response.status == 201) {
+        alert('Utilisateur créé. Vous pouvez vous connecter.')
+        window.location.reload()
+    } else {
+        alert('Erreur ' + response.status + '. Veuillez réessayer')
+    }
+})
 
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/user/signup');
-    xhr.setRequestHeader("Content-Type", "application/json")
-    xhr.onreadystatechange = function() {
-        if(this.readyState == 4 && this.status == 201) {
-            window.location = 'connection.html';
-            alert('Bienvenu sur Groupomania, vous êtes correctement inscrit.');
-        } else if(this.readyState == 4) {
-            alert('Erreur serveur.');
-        };
-    };
-    xhr.send(JSON.stringify(data));
-});
-
-let signinForm = document.getElementById('signin-form');
-signinForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const data = {
-        email: document.getElementById('inp_signin_email').value,
-        password: document.getElementById('inp_signin_password').value
-    };
-    console.log(JSON.stringify(data));
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/user/login');
-    xhr.setRequestHeader("Content-Type", "application/json")
-    xhr.onreadystatechange = function() {
-        if(this.readyState == 4 && this.status == 200) {
-            sessionStorage.setItem('token', JSON.parse(this.response).token);
-            sessionStorage.setItem('userId', JSON.parse(this.response).userId);
-            window.location = 'wall.html';
-        } else if(this.readyState == 4) {
-            alert('Erreur. Veuillez réessayer plus tard.')
-        };
-    };
-    xhr.send(JSON.stringify(data));
-});
+//Log in the application
+document.getElementById('signin-form').addEventListener('submit', async(e) => {
+    e.preventDefault()
+    let data = JSON.stringify({
+        email: this.inp_signin_email.value,
+        password: this.inp_signin_password.value
+    })
+    const response = await fetch('http://localhost:3000/user/login/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: data
+    })
+    let apiData = await response.json()
+    if(response.status == 200) {
+        sessionStorage.setItem('token', apiData.token)
+        sessionStorage.setItem('userId', apiData.userId)
+        window.location = 'wall.html'
+    } else {
+        alert('Erreur ' + response.status + '. Veuillez réessayer')
+    }
+})

@@ -8,12 +8,16 @@
 }
 body {
   margin: 0px;
-  font-size: 1em;
   background-color: #f1f2f6;
 }
 
 main {
   margin: 0 30vh;
+}
+@media screen and (max-width: 1024px) {
+  main {
+    margin: 0 10vh;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,6 +41,12 @@ ul {
 
 body {
   font-family: "quicksand";
+  font-size: 1em;
+}
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 0.8em;
+  }
 }
 
 header a {
@@ -70,12 +80,24 @@ header {
   background-color: #192946;
 }
 header h1 {
+  display: flex;
+  align-items: center;
   height: 60%;
   margin: 0 10vh;
   opacity: 90%;
 }
+@media screen and (max-width: 425px) {
+  header h1 {
+    margin: 0 10px;
+  }
+}
 header h1 img {
   height: 100%;
+}
+@media screen and (max-width: 425px) {
+  header h1 img {
+    height: 60%;
+  }
 }
 header h1:hover {
   opacity: 100%;
@@ -89,6 +111,7 @@ header nav ul {
   flex-direction: row;
   height: 100%;
   margin: 0;
+  padding: 0px;
 }
 header nav ul li a {
   display: flex;
@@ -96,6 +119,17 @@ header nav ul li a {
   align-items: center;
   height: 100%;
   padding: 0 40px;
+}
+@media screen and (max-width: 768px) {
+  header nav ul li a {
+    padding: 0 20px;
+  }
+}
+@media screen and (max-width: 425px) {
+  header nav ul li a {
+    font-size: 0.7em;
+    padding: 0 10px;
+  }
 }
 header nav ul li a:hover {
   border-bottom: 8px solid #d1515a;
@@ -107,12 +141,22 @@ header nav ul li a:hover {
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.2);
-  margin: 60px 0;
+  margin: 60px auto;
   width: 70%;
+}
+@media screen and (max-width: 768px) {
+  #new-post {
+    width: 100%;
+  }
 }
 #new-post form {
   padding: 20px 50px 20px 20px;
   width: 90%;
+}
+@media screen and (max-width: 425px) {
+  #new-post form {
+    padding: 10px;
+  }
 }
 #new-post form textarea {
   width: 100%;
@@ -122,12 +166,23 @@ header nav ul li a:hover {
   border: none;
   resize: none;
 }
+@media screen and (max-width: 425px) {
+  #new-post form textarea {
+    width: 95%;
+    font-size: 1em;
+  }
+}
 #new-post .inputs {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   margin: 10px 0;
+}
+@media screen and (max-width: 425px) {
+  #new-post .inputs {
+    flex-direction: column;
+  }
 }
 #new-post .inputs .submit {
   width: fit-content;
@@ -139,6 +194,13 @@ header nav ul li a:hover {
   color: white;
   font-size: 1.3em;
 }
+@media screen and (max-width: 425px) {
+  #new-post .inputs .submit {
+    font-size: 0.8em;
+    padding: 10px 15px;
+    margin-top: 10px;
+  }
+}
 #new-post .inputs .submit:hover {
   opacity: 1;
   cursor: pointer;
@@ -149,8 +211,13 @@ header nav ul li a:hover {
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.2);
-  margin: 60px 0;
+  margin: 60px auto;
   width: 70%;
+}
+@media screen and (max-width: 768px) {
+  .post {
+    width: 100%;
+  }
 }
 .post__header {
   display: flex;
@@ -164,6 +231,11 @@ header nav ul li a:hover {
   color: white;
   font-size: 1.3em;
 }
+@media screen and (max-width: 425px) {
+  .post__header a {
+    font-size: 1em;
+  }
+}
 .post__header a:hover {
   color: #d1515a;
   cursor: pointer;
@@ -174,9 +246,15 @@ header nav ul li a:hover {
   padding: 40px 60px;
   font-size: 1.3em;
 }
+@media screen and (max-width: 425px) {
+  .post__content {
+    font-size: 1em;
+    padding: 20px;
+  }
+}
 .post__content__img {
   margin-top: 20px;
-  width: 60%;
+  width: 100%;
 }
 
 .conn-title {
@@ -198,6 +276,11 @@ header nav ul li a:hover {
 }
 .conn-main__bloc__title {
   margin: 10px 0 20px;
+}
+@media screen and (max-width: 425px) {
+  .conn-main__bloc {
+    width: 70%;
+  }
 }
 .conn-main__bloc__form {
   display: flex;
@@ -228,6 +311,15 @@ header nav ul li a:hover {
 }
 .conn-main__bloc__form__submit--signin {
   background-color: #3498db;
+}
+@media screen and (max-width: 768px) {
+  .conn-main {
+    flex-direction: column;
+    align-items: center;
+  }
+  .conn-main__bloc {
+    margin-bottom: 20px;
+  }
 }
 
 .user {
@@ -265,8 +357,19 @@ header nav ul li a:hover {
   border-radius: 5px;
   background: none;
 }
+@media screen and (max-width: 425px) {
+  .user__header__figure__btn {
+    font-size: 0.6em;
+  }
+}
 .user__header__figure__btn--delete {
   right: 100px;
+}
+@media screen and (max-width: 425px) {
+  .user__header__figure__btn--delete {
+    right: 0px;
+    bottom: 40px;
+  }
 }
 .user__header__figure__btn:hover {
   cursor: pointer;
@@ -276,6 +379,11 @@ header nav ul li a:hover {
 .user__header__name {
   font-size: 2em;
 }
+@media screen and (max-width: 425px) {
+  .user__header__name {
+    font-size: 1.5em;
+  }
+}
 .user__infos {
   display: flex;
   flex-direction: column;
@@ -283,6 +391,11 @@ header nav ul li a:hover {
   width: 50%;
   border: 2px solid #192946;
   border-radius: 10px;
+}
+@media screen and (max-width: 425px) {
+  .user__infos {
+    width: 100%;
+  }
 }
 .user__infos__title {
   width: 100%;

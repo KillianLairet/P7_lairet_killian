@@ -1,11 +1,13 @@
 body{
     margin: 0px;
-    font-size: 1em;
     background-color: $color-background;
 }
 
 main{
     margin: 0 30vh;
+    @media screen and (max-width: 1024px) {
+        margin: 0 10vh;
+    }
 }
 
 h1, h2, h3, h4, h5, h6{

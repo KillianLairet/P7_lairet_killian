@@ -20,14 +20,22 @@
         <nav>
             <ul>
                 <li><a href="wall.html">Accueil</a></li>
-                <li><a onclick="openProfilePage()">Mon profil</a></li>
-                <li><a onclick="logOut()">Se déconnecter</a></li>
+                <li><a id="btn-profile">Mon profil</a></li>
+                <li><a id="btn-log-out">Se déconnecter</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <div id="new-post"></div>
+        <div id="new-post">
+            <form id="newPostForm">
+                <textarea id="postContent" name="postContent" placeholder="Que voulez-vous dire ?"></textarea>
+                <div class="inputs">
+                    <input id="postMedia" name="postMedia" type="file" accept="image/png, image/jpeg, image/jpg, image/gif">
+                    <input id="submit-new-post" type="submit" class="submit" value="Publier">
+                </div>
+            </form>
+        </div>
         
         <div id="posts"></div>
     </main>
@@ -37,16 +45,7 @@
 
 <!-- JavaScript -->
 <script src="./js/wall.js"></script>
-<script>
-    function openProfilePage() {
-        let userId = sessionStorage.getItem('userId');
-        document.location.href = 'profile.html?userId=' + userId;
-    }
-    function logOut() {
-        window.location = 'connection.html';
-        sessionStorage.clear();
-    }
-</script>
+<script src="./js/global.js"></script>
 
 </body>
 </html>

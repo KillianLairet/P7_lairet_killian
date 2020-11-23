@@ -7,11 +7,19 @@ header{
     height: 10vh;
     background-color: $color-primary;
     h1{
+        display: flex;
+        align-items: center;
         height: 60%;
         margin: 0 10vh;
         opacity: 90%;
+        @media screen and (max-width: 425px) {
+            margin: 0 10px;
+        }
         img{
             height: 100%;
+            @media screen and (max-width: 425px) {
+                height: 60%
+            }
         }
         &:hover{
             opacity: 100%;
@@ -25,12 +33,20 @@ header{
             flex-direction: row;
             height: 100%;
             margin: 0;
+            padding: 0px;
             li a{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 100%;
                 padding: 0 40px;
+                @media screen and (max-width: 768px) {
+                    padding: 0 20px;
+                }
+                @media screen and (max-width: 425px) {
+                    font-size: 0.7em;
+                    padding: 0 10px;
+                }
                 &:hover{
                     border-bottom: 8px solid $color-secondary;
                     background-color: rgba($color: $color-secondary, $alpha: .2);

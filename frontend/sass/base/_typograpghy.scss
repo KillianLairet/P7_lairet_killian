@@ -1,5 +1,9 @@
 body{
     font-family: $font-text;
+    font-size: 1em;
+    @media screen and (max-width: 768px) {
+        font-size: 0.8em;
+    }
 }
 
 //typography for header

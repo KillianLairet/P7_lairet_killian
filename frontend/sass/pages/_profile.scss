@@ -29,8 +29,15 @@
                 border: none;
                 border-radius: 5px;
                 background: none;
+                @media screen and (max-width: 425px) {
+                    font-size: 0.6em;
+                }
                 &--delete{
                     right: 100px;
+                    @media screen and (max-width: 425px) {
+                        right: 0px;
+                        bottom: 40px
+                    }
                 }
                 &:hover{
                     cursor: pointer;
@@ -41,6 +48,9 @@
         }
         &__name{
             font-size: 2em;
+            @media screen and (max-width: 425px) {
+                font-size: 1.5em;
+            }
         }
     }
     &__infos{
@@ -50,6 +60,9 @@
         width: 50%;
         border: 2px solid $color-primary;
         border-radius: 10px;
+        @media screen and (max-width: 425px) {
+            width: 100%
+        }
         &__title{
             width: 100%;
             text-align: center;

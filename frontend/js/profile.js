@@ -1,29 +1,35 @@
-let paramKey = 'userId';
-let params = new URLSearchParams(document.location.search);
-if(params.has(paramKey)) {
-    let paramValue = params.get(paramKey);
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState == 4 && xhr.status == 200) {
-            let data = JSON.parse(xhr.response)[0];
-            if(data.profilePhoto == null) {
-                data.profilePhoto = './img/defaultPP.png';
+const token = 'Bearer ' + sessionStorage.getItem('token')
+
+//Display user information
+const params = new URLSearchParams(document.location.search)
+if(params.has('userId')) {
+    const paramValue = params.get('userId')
+    const getUserData = async() => {
+        const response = await fetch('http://localhost:3000/user/profile/' + paramValue, {
+            headers: {
+                'Authorization': token
             }
-            displayUser(data);
-        } else if(xhr.readyState == 4) {
-            alert('Erreur serveur.');
-            document.location.href = 'wall.html'
-        };
-    };
-    xhr.open('GET', 'http://localhost:3000/user/profile/' + paramValue)
-    xhr.setRequestHeader("Authorization", 'Bearer ' + sessionStorage.getItem('token'));
-    xhr.send();
-
+        })
+        const user = await response.json()
+        if(response.status == 200) {
+            if(user[0].profilePhoto == null) {
+                user[0].profilePhoto = './img/defaultPP.png'
+            }
+            displayUser(user[0])
+        } else {
+            alert('Erreur ' + response.status + '. Veuillez réessayer')
+        }
+    }
+    getUserData();
 } else {
-    alert('Utilisateur introuvable. Vous allez être redirigé.')
-    document.location.href = 'wall.html';
-};
+    alert('Utilisateur introuvable. Vous allez être redirigé')
+            window.location = 'wall.html'
+}
 
+/**
+ * displayUser() allows to build a user page with the information of an object user
+ * @param {Object} userObj user object with 3 keys : userName, email, profilePhoto
+ */
 function displayUser(userObj) {
     let target = document.getElementById('userTarget');
     target.innerHTML +=
@@ -48,69 +54,65 @@ function displayUser(userObj) {
     document.getElementById('btn_updateUser').addEventListener('click', function(e) {
         e.preventDefault();
 
+        //Display the form to modify user information
         let formUserTarget = document.getElementById('formUserTarget')
         formUserTarget.innerHTML +=
         `<div class="update-user">
-            <form>
+            <form id="modifyUserForm">
                 <input type="text" id="userName" name="userName" placeholder="Votre nouveau nom">
                 <input type="file" id="profilePicture" name="profilePicture" accept="image/png, image/jpeg, image/jpg">
                 <div>
-                    <input id="update-user-form-submit-btn" type="submit" value="Modifier">
+                    <input type="submit" value="Modifier">
                     <button id="update-user-form-cancelled-btn">Annuler</button>
                 </div>
             </form>
         </div>`
+        
+        //Update user from database
+        document.getElementById('modifyUserForm').addEventListener('submit', async(e) => {
+            e.preventDefault()
+            let profilePhoto = document.getElementById('profilePicture').files[0]
+            let userObj = JSON.stringify({
+                userName: document.getElementById('userName').value
+            })
+            const fd = new FormData()
+            fd.append('image', profilePhoto)
+            fd.append('user', userObj)
 
-        document.getElementById('update-user-form-cancelled-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.location.reload();
-        });
+            const response = await fetch('http://localhost:3000/user/profile/' + sessionStorage.getItem('userId'), {
+                method: 'PUT',
+                headers: {
+                    'Authorization': token
+                },
+                body: fd
+            })
+            if(response.status == 200) {
+                window.location.reload()
+            } else {
+                alert('Erreur ' + response.status + '. Veuillez réessayer')
+            }
+        })
 
-        document.getElementById('update-user-form-submit-btn').addEventListener('submit', function(e) {
-            e.preventDefault();
+        //Cancel form update user
+        document.getElementById('update-user-form-cancelled-btn').addEventListener('click', function() {
+            window.location.reload()
+        })
+    })
 
-            let profilePhoto = document.querySelector('input[type=file]').files[0];
-            let userObj = {
-                userName: document.getElementById('userName').nodeValue
-            };
-            let fd = new FormData();
-            fd.append(image, profilePhoto);
-            fd.append(user, JSON.stringify(userObj));
-
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if(this.readyState == 4 && this.status == 200) {
-                    window.location.reload();
-                    alert('Informations modifiées.');
-                } else if(this.readyState == 4) {
-                    alert('Erreur serveur.');
-                    document.location.reload();
-                };
-            };
-            xhr.setRequestHeader("Authorization", 'Bearer ' + sessionStorage.getItem('token'));
-            xhr.open('POST', 'http://localhost:3000/profile/' + paramValue);
-            xhr.send(fd);
-        });
-    });
-
-    document.getElementById('btn_deleteUser').addEventListener("click", function(e) {
-        e.preventDefault();
-
-        let paramKey = 'userId';
-        let params = new URLSearchParams(document.location.search);
-        let paramValue = params.get(paramKey);
-        let xhr = new XMLHttpRequest();
-        xhr.open("DELETE", 'http://localhost:3000/user/profile/' + paramValue)
-        xhr.setRequestHeader("Authorization", 'Bearer ' + sessionStorage.getItem('token'));
-        xhr.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                alert('Utilisateur supprimé.');
-                sessionStorage.clear();
-                window.location = 'connection.html';
-            } else if(this.readyState == 4) {
-                alert('Erreur serveur.');
-            };
-        };
-        xhr.send();
-    });
-};
+    //Delete user from database
+    document.getElementById('btn_deleteUser').addEventListener('click', async(e) => {
+        e.preventDefault()
+        const response = await fetch('http://localhost:3000/user/profile/' + sessionStorage.getItem('userId'), {
+            method: 'DELETE',
+            headers: {
+                'Authorization': token
+            }
+        })
+        if(response.status == 200) {
+            sessionStorage.clear()
+            window.location = 'connection.html'
+        } else {
+            alert('Erreur ' + response.status + '. Veuillez réessayer')
+        }
+    })
+}
